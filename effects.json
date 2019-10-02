@@ -1,0 +1,65 @@
+{
+    "custom1": {
+        "compressor": {
+            "attack": 0.01,
+            "release": 0.3,
+            "ratio": 3,
+            "threshold": -16.5
+        },
+        "highPass": {
+            "frequency": 800,
+            "peak": 0
+        },
+        "lowPass": {
+            "frequency": 4000,
+            "peak": 0.2
+        }
+    },
+    "custom2": {
+        "compressor": {
+            "attack": 0.01,
+            "release": 0.3,
+            "ratio": 3,
+            "threshold": -16.5
+        },
+        "highPass": {
+            "frequency": 120,
+            "peak": 0
+        },
+
+        "lowPass": {
+            "frequency": 400,
+            "peak": 0.2
+        }
+    },
+    "custom3": {
+        "compressor": {
+            "attack": 0.01,
+            "release": 0.3,
+            "ratio": 3,
+            "threshold": -16.5
+        },
+        "highPass": {
+            "frequency": 120,
+            "peak": 0
+        }
+    },
+    "reverb": {
+        "compressor": {
+            "attack": 0.01,
+            "release": 0.5,
+            "ratio": 5,
+            "threshold": -16.5
+        },
+        "highPass": {
+            "frequency": 80,
+            "peak": 0
+        },
+        "reverb": {
+            "time": 0.01,
+            "decay": 0.01,
+            "reverse": false,
+            "mix": 0.5
+        }
+    }
+}
