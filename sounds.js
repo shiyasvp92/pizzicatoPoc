@@ -1,3 +1,5 @@
+var recorderObj = null;
+
 function loadJSON(path, success, error)
 {
     var xhr = new XMLHttpRequest();
@@ -42,7 +44,7 @@ window.onload = function () {
     var sound = new Pizzicato.Sound({
         source: 'file',
         options: {
-            path: './song.mp3'
+            path: './song.mp4'
         }
     });
 
@@ -56,6 +58,15 @@ window.onload = function () {
 
     document.getElementById('stopBtn').addEventListener('click', function () {
         sound.stop();
+    });
+
+    document.getElementById('saveEffect').addEventListener('click', function () {
+        saveAudio(sound)
+    });
+
+
+    document.getElementById('stopSave').addEventListener('click', function () {
+        stopSave(sound)
     });
 }
 
@@ -100,3 +111,45 @@ function setEffect(mode, sound, effectConf) {
 function printEffect(effect) {
     document.getElementById('currentEq').innerHTML = JSON.stringify(effect)
 }
+
+function saveAudio() {
+    const ctx = Pizzicato.context
+    const source = Pizzicato.masterGainNode
+    source.disconnect(ctx.destination)
+    const dest = ctx.createMediaStreamDestination()
+    source.connect(dest)
+    const recorder = new Recorder(source)
+
+    recorderObj = recorder;
+    recorder.record()
+    console.log(recorder)
+}
+
+function stopSave() {
+    console.log(recorderObj)
+    recorderObj.stop()
+
+    const ctx = Pizzicato.context
+    const source = Pizzicato.masterGainNode
+    source.connect(ctx.destination)
+    createDownloadLink()
+}
+
+function createDownloadLink() {
+    recorderObj && recorderObj.exportWAV(function(blob) {
+      var url = URL.createObjectURL(blob);
+      var li = document.createElement('li');
+      var au = document.createElement('audio');
+      var hf = document.createElement('a');
+      var recordingslist = document.getElementById('recordingslist');
+      
+      au.controls = true;
+      au.src = url;
+      hf.href = url;
+      hf.download = new Date().toISOString() + '.wav';
+      hf.innerHTML = hf.download;
+      li.appendChild(au);
+      li.appendChild(hf);
+      recordingslist.appendChild(li);
+    });
+  }

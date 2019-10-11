@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pizzicato POC</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.4/Pizzicato.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.4/Pizzicato.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recorderjs/0.1.0/recorder.js"></script> 
 <body>
     <select id="eqSelect">
         <option value="none" selected>None</option>
@@ -15,6 +16,10 @@
     <p id="currentEq">
 
     </p>
+    <button id="saveEffect">Save</button>
+    <button id="stopSave">Stop</button>
+
+    <ul id="recordingslist"></ul>
     <script src="sounds.js"></script>
 </body>
 </html>
